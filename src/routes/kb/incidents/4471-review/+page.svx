@@ -1,0 +1,35 @@
+---
+layout: runbook
+title: '#4471 · date reports need separate fixes'
+owner: support desk
+status: proposed
+reviewed: 2026-10-28
+signature: Codex
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  let { signature } = $props();
+</script>
+
+The reports merged into #4471 include two causes. The shared parser reads dates month first even for day-first tenants. The booking-v3 date hint tells people to enter month first while that form reads dates in the tenant's order. These need separate fixes.
+
+## Reports by cause
+
+The table deduplicates report IDs and classifies reports using each tenant's locale and form, rather than intake's browser-based tag. It also notes reports the desk read as one-day moves. Those reports need investigation; their text alone does not establish a third cause.
+
+<CauseTable ticket={4471} />
+
+## Queue
+
+The desk continues to receive and merge reports. Compare received and merged weeks before treating a snapshot count as current.
+
+<QueueTimeline ticket={4471} />
+
+## Triage
+
+Do not merge on subject alone. Look up the tenant and channel, compare the underlying cause, and leave reports without enough evidence unplaced for investigation. The accepted subject-only decision remains a historical record; a replacement decision should be made separately.
+
+<RenderStamp {signature} />
