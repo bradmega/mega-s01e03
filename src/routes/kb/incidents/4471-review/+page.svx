@@ -1,8 +1,8 @@
 ---
 layout: runbook
-title: '#4471 · date reports need separate fixes'
+title: '#4471 · date reports and engineering outcomes'
 owner: support desk
-status: proposed
+status: closed
 reviewed: 2026-10-28
 signature: Codex
 ---
@@ -14,17 +14,23 @@ signature: Codex
   let { signature } = $props();
 </script>
 
-The reports merged into #4471 include two causes. The shared parser reads dates month first even for day-first tenants. The booking-v3 date hint tells people to enter month first while that form reads dates in the tenant's order. These need separate fixes.
+The reports merged into #4471 include two causes. The shared parser read dates month first even for day-first tenants. The booking-v3 date hint told people to enter month first while that form read dates in the tenant's order.
+
+## Engineering update
+
+The [course engineering update](https://hq.mega.dev/challenges/what-it-shows#engineering-update) records #4471 as closed on 5 October 2026. The parser was **fixed**, with `fix(dates): parse dd/mm for eu locales`. The hint was **won't fix** because the booking-v3 form was retired. Retirement does not establish that the hint was corrected.
+
+The corresponding public tickets are [the parser](https://github.com/sonicparke/mega-s01e03/issues/1) and [the hint](https://github.com/sonicparke/mega-s01e03/issues/2).
 
 ## Reports by cause
 
-The table deduplicates report IDs and classifies reports using each tenant's locale and form, rather than intake's browser-based tag. It also notes reports the desk read as one-day moves. Those reports need investigation; their text alone does not establish a third cause.
+The table shows the 4 October export, before engineering closed #4471. Its ticket ownership labels describe that snapshot. It deduplicates report IDs and classifies reports using each tenant's locale and form, rather than intake's browser-based tag. It also notes reports the desk read as one-day moves. Their text alone does not establish a third cause, and the update does not resolve their individual symptoms.
 
 <CauseTable ticket={4471} />
 
 ## Queue
 
-The desk continues to receive and merge reports. Compare received and merged weeks before treating a snapshot count as current.
+This timeline shows reports received and merged through the exported snapshot. It is historical data, not a live queue or evidence of when engineering resolved either cause.
 
 <QueueTimeline ticket={4471} />
 
